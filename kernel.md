@@ -1,11 +1,19 @@
 # Kernel Compiling
 
-### Obtain a kernel from source
-wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.14.12.tar.xz
-tar -xvpf linux-4.14.12.tar.xz
-cd linux-4.14.12
+## Obtain a kernel from source
 
-### After download and extracting it
+Go to [kernel.org](https://kernel.org)
+
+Donwload the version you wish
+
+wget [url]
+
+tar -xvpf linux-version.tar.xz
+
+cd linux-version
+
+## After download and extracting it
+
 When compiling a kernel there are several configuration options to choose from. Sometimes, the best option is coping the config file existing in the target machine when compiling from it. There are, however several options to choose from:
 
 - make config: Text based configuration. The options are prompted one after another. All options need to be answered, and out-of-order access to former options is not possible.
@@ -20,3 +28,32 @@ When compiling a kernel there are several configuration options to choose from. 
 - make allmodconfig: Enables all modules in kernel
 
 [source](https://wiki.gentoo.org/wiki/Kernel/Configuration)
+
+## Compiling the kernel
+
+After all the configurations are defined, we can start compiling the kernel.
+
+First, get the number of cores your system has available
+
+cat /proc/cpuinfo | grep processor | wc -l
+
+When that has been defined, choose how many cores you want to use, in this example, four cores are being used.
+
+make -j4 bzImage
+
+When this is done, you need to compile the modules for this kernel
+
+make -j4 modules
+
+When they are done you can then installed them:
+
+make modules_install
+
+When all this is done, these commands should be executed.
+
+cp arch/x86/boot/bzImage /boot/vmlinuz-generic-version
+
+cp System.map /boot/System.map-generic-4.14.12
+
+cp .config /boot/config-generic-4.14.12
+
