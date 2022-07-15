@@ -8,9 +8,9 @@ Donwload the version you wish
 
 wget [url]
 
-'tar -xvpf linux-version.tar.xz'
+`tar -xvpf linux-version.tar.xz`
 
-'cd linux-version'
+`cd linux-version`
 
 ## After download and extracting it
 
@@ -35,37 +35,37 @@ After all the configurations are defined, we can start compiling the kernel.
 
 First, get the number of cores your system has available
 
-'cat /proc/cpuinfo | grep processor | wc -l'
+`cat /proc/cpuinfo | grep processor | wc -l`
 
 When that has been defined, choose how many cores you want to use, in this example, four cores are being used.
 
-'make -j4 bzImage'
+`make -j4 bzImage`
 
 When this is done, you need to compile the modules for this kernel
 
-'make -j4 modules'
+`make -j4 modules`
 
 When they are done you can then installed them:
 
-'make modules_install'
+`make modules_install`
 
 When all this is done, these commands should be executed.
 
-'cp arch/x86/boot/bzImage /boot/vmlinuz-generic-version'
+`cp arch/x86/boot/bzImage /boot/vmlinuz-generic-version`
 
-'cp System.map /boot/System.map-generic-version'
+`cp System.map /boot/System.map-generic-version`
 
-'cp .config /boot/config-generic-version'
+`cp .config /boot/config-generic-version`
 
-'cd /boot'
+`cd /boot`
 
-'rm -rf config System.map vmlinuz'
+`rm -rf config System.map vmlinuz`
 
-'ln -sf vmlinuz-version vmlinuz'
+`ln -sf vmlinuz-version vmlinuz`
 
-'ln -s System.map-generic-version System.map'
+`ln -s System.map-generic-version System.map`
 
-'ln -s config-generic-version config'
+`ln -s config-generic-version config`
 
 ## Bootloader
 
@@ -73,13 +73,13 @@ When all this is done, these commands should be executed.
 
 If you are using lilo as bootloader, you should run, at the end of the process the following command
 
-'lilo'
+`lilo`
 
 ## Initrd.img
 
 You can use an initrd.img in order to make the computer boot faster, in the case of slackware, there is a special tool that facilitates the operation
 
-'/usr/share/mkinitrd/mkinitrd_command_generator.sh -k linux-version'
+`/usr/share/mkinitrd/mkinitrd_command_generator.sh -k linux-version`
 
 After running, copy and run the command that has been generated for you
 
@@ -97,15 +97,15 @@ The compiler is installed in the folder /platform/
 
 After the command:
 
-'make -j4 modules'
+`make -j4 modules`
 
 Exit the folder
 
-'cd ..'
+`cd ..`
 
 Compress the folder
 
-'tar -zcvf archive_name.tar.gz folder_to_compress'
+`tar -zcvf archive_name.tar.gz folder_to_compress`
 
 and the send the compress archive to the destination, extract and proceded with the next steps.
 
