@@ -35,7 +35,7 @@ After all the configurations are defined, we can start compiling the kernel.
 
 First, get the number of cores your system has available
 
-cat /proc/cpuinfo | grep processor | wc -l
+<code>cat /proc/cpuinfo | grep processor | wc -l</code>
 
 When that has been defined, choose how many cores you want to use, in this example, four cores are being used.
 
@@ -53,7 +53,64 @@ When all this is done, these commands should be executed.
 
 cp arch/x86/boot/bzImage /boot/vmlinuz-generic-version
 
-cp System.map /boot/System.map-generic-4.14.12
+cp System.map /boot/System.map-generic-version
 
-cp .config /boot/config-generic-4.14.12
+cp .config /boot/config-generic-version
 
+cd /boot
+
+rm -rf config System.map vmlinuz
+
+ln -sf vmlinuz-fusion-4.19.232 vmlinuz
+
+ln -s System.map-generic-version System.map
+
+ln -s config-generic-version config
+
+## Bootloader
+
+### Lilo
+
+If you are using lilo as bootloader, you should run, at the end of the process the following command
+
+lilo
+
+## Initrd.img
+
+You can use an initrd.img in order to make the computer boot faster, in the case of slackware, there is a special tool that facilitates the operation
+
+/usr/share/mkinitrd/mkinitrd_command_generator.sh -k 4.14.12
+
+After running, copy and run the command that has been generated for you
+
+## Some problems
+
+### Compiler version
+
+Sometimes the compiler is not up to date to the needs. In order to make this process easier you can use this:
+
+https://gist.github.com/jeetsukumaran/5224956#file-build-gcc-sh-L11
+
+The compiler is installed in the folder /platform/
+
+### Compiling the kernel in one machine and installing in another
+
+After the command:
+
+make -j4 modules
+
+Exit the folder
+
+cd ..
+
+Compress the folder
+
+tar -zcvf archive_name.tar.gz folder_to_compress
+
+and the send the compress archive to the destination, extract and proceded with the next steps.
+
+## Sources
+
+https://wiki.linuxquestions.org/wiki/How_to_build_and_install_your_own_Linux_kernel
+
+http://web.mit.edu/linux/redhat/redhat-4.2/i386/doc/rhmanual/doc037.html
