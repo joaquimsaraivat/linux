@@ -4,7 +4,7 @@
 
 Go to [kernel.org](https://kernel.org)
 
-Donwload the version you wish
+Download the version you wish
 
 wget [url]
 
@@ -12,9 +12,9 @@ wget [url]
 
 `cd linux-version`
 
-## After download and extracting it
+## After downloading and extracting it
 
-When compiling a kernel there are several configuration options to choose from. Sometimes, the best option is coping the config file existing in the target machine when compiling from it. There are, however several options to choose from:
+When compiling a kernel there are several configuration options to choose from. Sometimes, the best option is to copy the config file already existing in the boot folder. There are, however, several options to choose from:
 
 - make config: Text based configuration. The options are prompted one after another. All options need to be answered, and out-of-order access to former options is not possible.
 - make menuconfig: An ncurses-based pseudo-graphical menu (only text input). Navigate through the menu to modify the desired options.
@@ -45,7 +45,7 @@ When this is done, you need to compile the modules for this kernel
 
 `make -j4 modules`
 
-When they are done you can then installed them:
+When they are done you can then install them:
 
 `make modules_install`
 
@@ -71,7 +71,7 @@ When all this is done, these commands should be executed.
 
 ### Lilo
 
-If you are using lilo as bootloader, you should run, at the end of the process the following command
+If you are using lilo as a bootloader, you should run, at the end of the process the following command
 
 `lilo`
 
@@ -87,13 +87,13 @@ After running, copy and run the command that has been generated for you
 
 ### Compiler version
 
-Sometimes the compiler is not up to date to the needs. In order to make this process easier you can use this:
+Sometimes the compiler is not up to date with the needs. In order to make this process easier you can use this:
 
 https://gist.github.com/jeetsukumaran/5224956#file-build-gcc-sh-L11
 
 The compiler is installed in the folder /platform/
 
-### Compiling the kernel in one machine and installing in another
+### Compiling the kernel in one machine and installing it in another
 
 After the command:
 
@@ -107,7 +107,7 @@ Compress the folder
 
 `tar -zcvf archive_name.tar.gz folder_to_compress`
 
-and the send the compress archive to the destination, extract and proceded with the next steps.
+and then send the compressed archive to the destination, extract and proceed with the next steps.
 
 ## Sources
 
